@@ -9,10 +9,12 @@ public class Game : MonoBehaviour
 
     public static int correctAnswersNumber;
     public static int incorrectAnswersNumber;
+    public int lifenumber = 3;
     public Questions questions;
     public Button[] answerButtons;
 
     public Text questionText;
+    public Text lifeText;
     private int correctAnswerIndex;
     public float timeBetweenQuestion = 1.5f;
     private float timeToNewQuestion;
@@ -52,13 +54,14 @@ public class Game : MonoBehaviour
     {
         EnableButtons();
         QuestionData qd = questions.getNewQuetstion();
-        if (qd != null) // проверка остались ли вопросы
+        if (qd != null & lifenumber > 0) // проверка остались ли вопросы и жизни
         {
             questionText.text = qd.question;
             answerButtons[0].GetComponentInChildren<Text>().text = qd.answer_1; //слушатели для кнопок
             answerButtons[1].GetComponentInChildren<Text>().text = qd.answer_2;
             answerButtons[2].GetComponentInChildren<Text>().text = qd.answer_3;
             answerButtons[3].GetComponentInChildren<Text>().text = qd.answer_4;
+            lifeText.text = $"Количество жизней = {lifenumber}" ;
 
             correctAnswerIndex = qd.correctAnswerIndex - 1; // индекс кнопки с правильным ответом
         }
@@ -80,6 +83,7 @@ public class Game : MonoBehaviour
         else // Если кнопка не верная
         {
             incorrectAnswersNumber++;
+            lifenumber--;
         }
 
         ColorizeButton(buttonIndex, isCorrect); // возваращение исходного цвета кнопки
