@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dbd2db3a1d81a45b1dfb893f7bb8dc, type: 3}
   m_Name: Question 2
   m_EditorClassIdentifier: 
-  question: 2+2
+  question: 2+2=
   answer_1: 1
   answer_2: 3
   answer_3: 4
